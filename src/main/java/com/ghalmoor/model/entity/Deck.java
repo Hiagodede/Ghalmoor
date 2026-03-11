@@ -5,22 +5,23 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-public class Deck {
-    List<CardDefinition> deckCards = new ArrayList<>();
 
-    private void addCard(CardDefinition card)
+public class Deck {
+    List<Card> deckCards = new ArrayList<>();
+
+    public void addCard(Card card)
     {
         deckCards.add(card);
     }
-    private Card buyCard()
+
+    public Card buyCard()
     {
         if(deckCards.isEmpty())
             throw new IllegalStateException("Deck Vazio");
 
-        CardDefinition definition = deckCards.remove(deckCards.size() - 1);
-
-        return new Card(definition);
+        return deckCards.remove(deckCards.size() - 1);
     }
+
     public void shuffle()
     {
         Collections.shuffle(deckCards);
