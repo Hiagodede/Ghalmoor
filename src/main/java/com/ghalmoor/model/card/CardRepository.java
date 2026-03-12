@@ -20,6 +20,7 @@ public class CardRepository {
         cards.put("snake", new CardDefinition("snake", "Cobra", 2, 1, 0));
         cards.put("bird", new CardDefinition("bird", "Passaro", 1, 1, 0));
         cards.put("fox", new CardDefinition("fox", "Raposa", 2, 2, 0));
+        cards.put("bosta", new CardDefinition("bosta", "bosta", 2, 2, 0));
     }
 
     public CardDefinition getCard(String id)

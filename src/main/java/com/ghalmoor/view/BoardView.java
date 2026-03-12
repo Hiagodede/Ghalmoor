@@ -1,4 +1,4 @@
 package com.ghalmoor.view;
 
-public class CartaView {
+public class BoardView {
 }

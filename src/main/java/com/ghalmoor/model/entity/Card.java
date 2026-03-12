@@ -25,6 +25,11 @@ public class Card {
         return currentHealth;
     }
 
+    public CardDefinition getDefinition()
+    {
+        return definition;
+    }
+
     public void takeDamage(int damage)
     {
         currentHealth -= damage;
