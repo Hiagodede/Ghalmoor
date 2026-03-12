@@ -6,18 +6,16 @@ public class Card {
     private CardDefinition definition;
     private int currentAttack;
     private int currentHealth;
+    private boolean hasAttacked;
 
     public Card(CardDefinition definition)
     {
         this.definition = definition;
         this.currentAttack = definition.getAttack();
         this.currentHealth = definition.getHealth();
+        this.hasAttacked = false;
     }
 
-    public String getName()
-    {
-        return definition.getName();
-    }
     public int getAttack()
     {
         return currentAttack;
@@ -25,5 +23,15 @@ public class Card {
     public int getHealth()
     {
         return currentHealth;
+    }
+
+    public void takeDamage(int damage)
+    {
+        currentHealth -= damage;
+    }
+
+    public boolean isDead()
+    {
+        return currentHealth <= 0;
     }
 }

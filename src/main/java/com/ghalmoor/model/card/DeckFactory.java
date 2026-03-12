@@ -16,9 +16,9 @@ public class DeckFactory {
     public Deck InicialDeck() {
         Deck deck = new Deck();
 
-        deck.addCard(new Card(repository.getCard("deer")));
-        deck.addCard(new Card(repository.getCard("bird")));
-        deck.addCard(new Card(repository.getCard("fox")));
+        deck.addCard(repository.getCard("deer"));
+        deck.addCard(repository.getCard("bird"));
+        deck.addCard(repository.getCard("fox"));
 
         deck.shuffle();
 
@@ -31,7 +31,7 @@ public class DeckFactory {
 
         for(CardDefinition card : collection.getUnlockedCards())
         {
-            deck.addCard(new Card(card));
+            deck.addCard(card);
         }
 
         deck.shuffle();
