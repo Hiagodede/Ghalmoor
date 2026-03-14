@@ -1,4 +1,4 @@
 package com.ghalmoor.model.command;
 
-public class AtacarCommand {
+public class PlayCardCommand {
 }
