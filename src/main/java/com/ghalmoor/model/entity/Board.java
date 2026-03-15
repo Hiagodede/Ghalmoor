@@ -16,14 +16,19 @@ public class Board {
 
     public void placeEnemyCard(Card card, int position)
     {
-        if(playerSlot[position] != null)
+        if(enemySlot[position] != null)
             throw new IllegalStateException("Slot ocupado");
 
-        playerSlot[position] = card;
+        enemySlot[position] = card;
     }
 
-    public Card getCard(int position)
+    public Card getPlayerCard(int position)
     {
         return playerSlot[position];
+    }
+
+    public Card getEnemyCard(int position)
+    {
+        return enemySlot[position];
     }
 }

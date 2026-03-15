@@ -1,6 +1,8 @@
 package com.ghalmoor.model.game;
 
 import com.ghalmoor.model.card.CardDefinition;
+import com.ghalmoor.model.card.CardRepository;
+import com.ghalmoor.model.card.DeckFactory;
 import com.ghalmoor.model.entity.Board;
 import com.ghalmoor.model.entity.Player;
 import java.math.*;
@@ -8,10 +10,9 @@ import java.math.*;
 public class Game {
     private Player player1;
     private Player player2;
-
     private Board board;
-
     private Player currentPlayer;
+
 
     public Game(Player player1, Player player2, Board board)
     {
