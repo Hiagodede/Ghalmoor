@@ -31,4 +31,48 @@ public class Board {
     {
         return enemySlot[position];
     }
+
+    //COMBAT
+
+    //combate provisório
+    public void resolveCombat()
+    {
+        for(int i = 0; i < 5; i++)
+        {
+            Card playerCard = playerSlot[i];
+            Card enemyCard = enemySlot[i];
+
+            if(playerCard != null)
+            {
+                if(enemyCard != null)
+                {
+                    enemyCard.takeDamage(playerCard.getAttack());
+                }
+            }
+
+            if(enemyCard != null)
+            {
+                if(playerCard != null)
+                {
+                    playerCard.takeDamage(enemyCard.getAttack());
+                }
+            }
+        }
+    }
+
+    public void removeDeadCards()
+    {
+        for(int i = 0; i < 5; i++)
+        {
+            if(playerSlot[i] != null && playerSlot[i].isDead())
+            {
+                playerSlot[i] = null;
+            }
+
+            if(enemySlot[i] != null && enemySlot[i].isDead())
+            {
+                enemySlot[i] = null;
+            }
+        }
+    }
 }

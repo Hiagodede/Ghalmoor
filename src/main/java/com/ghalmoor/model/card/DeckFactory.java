@@ -13,12 +13,23 @@ public class DeckFactory {
         this.repository = repository;
     }
 
-    public Deck InicialDeck() {
+    public Deck inicialDeck() {
         Deck deck = new Deck();
 
         deck.addCard(repository.getCard("deer"));
         deck.addCard(repository.getCard("bird"));
         deck.addCard(repository.getCard("fox"));
+
+        deck.shuffle();
+
+        return deck;
+    }
+    public Deck enemyInicialDeck() {
+        Deck deck = new Deck();
+
+        deck.addCard(repository.getCard("bosta"));
+        deck.addCard(repository.getCard("raposaSangrenta"));
+        deck.addCard(repository.getCard("hocusPocus"));
 
         deck.shuffle();
 
