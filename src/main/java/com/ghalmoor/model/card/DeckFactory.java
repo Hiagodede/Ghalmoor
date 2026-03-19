@@ -19,6 +19,9 @@ public class DeckFactory {
         deck.addCard(repository.getCard("deer"));
         deck.addCard(repository.getCard("bird"));
         deck.addCard(repository.getCard("fox"));
+        deck.addCard(repository.getCard("shark"));
+        deck.addCard(repository.getCard("horse"));
+        deck.addCard(repository.getCard("frog"));
 
         deck.shuffle();
 

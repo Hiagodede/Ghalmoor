@@ -70,29 +70,30 @@ public class Game {
         currentState.drawCard(this);
     }
 
-    private void autoPlayerCard(Game game)
+    private void autoPlayerCard()
     {
         Player player = currentPlayer;
 
         if(player.getHand().getCards().isEmpty())
             return;
 
-        Card card = player.getHand().removeCard(0);
 
         for(int i = 0; i < 5; i++)
         {
-            if(board.getPlayerCard(i) == null)
+            if(board.getPlayerCard(i) == null && currentPlayer == player1)
             {
+                Card card = player.getHand().removeCard(0);
                 board.placeCard(card, i);
-                System.out.println("\n Player colocou carta no slot: " + i);
+                System.out.println("\n Player colocou carta: " + card.getDefinition().getName() + " no slot: " + i);
                 return;
             }
             else
             {
-                if(board.getEnemyCard(i) == null)
+                if(board.getEnemyCard(i) == null && currentPlayer == player2)
                 {
+                    Card card = player.getHand().removeCard(0);
                     board.placeEnemyCard(card, i);
-                    System.out.println("\n Inimigo colocou carta no slot: " + i);
+                    System.out.println("\n Inimigo colocou carta: " + card.getDefinition().getName() + " no slot: " + i);
                     return;
                 }
 
@@ -100,11 +101,11 @@ public class Game {
         }
     }
 
-    void attack(Game game)
+    void attack()
     {
         currentState.attack(this);
     }
-    void nextPhase(Game game)
+    void nextPhase()
     {
         currentState.endTurn(this);
     }
@@ -113,7 +114,15 @@ public class Game {
     {
         System.out.println(currentPlayer == player1? "TURNO DO PLAYER" : "TURNO DO INIMIGO");
 
+        drawCard();
 
+        autoPlayerCard();
+
+        nextPhase();
+
+        attack();
+
+        nextPhase();
     }
 
 }

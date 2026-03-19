@@ -21,16 +21,21 @@ public class TerminalGameTest {
         Game game = new Game(player1, enemy, board);
         game.startGame();
 
-        System.out.println("\nCartas do Jogador: tam: " + player1.getHand().getSize());
-        for(var card : player1.getHand().getCards())
+        for(int i = 0; i < 5; i++)
         {
-            System.out.println(card.getDefinition().getName()+ " " + card.getAttack()+ " " + card.getHealth());
+            game.playTurn();
         }
 
-        System.out.println("\nCartas do Inimigo: tam: " + enemy.getHand().getSize());
-        for(var card : enemy.getHand().getCards())
-        {
-            System.out.println(card.getDefinition().getName()+ " " + card.getAttack()+ " " + card.getHealth());
-        }
+//        System.out.println("\nCartas do Jogador: tam: " + player1.getHand().getSize());
+//        for(var card : player1.getHand().getCards())
+//        {
+//            System.out.println(card.getDefinition().getName()+ " " + card.getAttack()+ " " + card.getHealth());
+//        }
+//
+//        System.out.println("\nCartas do Inimigo: tam: " + enemy.getHand().getSize());
+//        for(var card : enemy.getHand().getCards())
+//        {
+//            System.out.println(card.getDefinition().getName()+ " " + card.getAttack()+ " " + card.getHealth());
+//        }
     }
 }

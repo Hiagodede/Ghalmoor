@@ -28,4 +28,9 @@ public class Deck {
     {
         Collections.shuffle(deckCards);
     }
+
+    public boolean isEmpty()
+    {
+        return deckCards.isEmpty();
+    }
 }

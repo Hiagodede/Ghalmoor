@@ -12,6 +12,11 @@ public class Player {
     }
 
     public void drawCard() {
+        if(deck.isEmpty())
+        {
+            System.out.println("\nDeck vazio, não pode mais comprar");
+            return;
+        }
         CardDefinition definition = deck.drawCard();
         Card card = new Card(definition);
 
