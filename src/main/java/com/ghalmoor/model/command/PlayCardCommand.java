@@ -20,7 +20,7 @@ public class PlayCardCommand implements Command{
     @Override
     public void execute()
     {
-        Card card = player.getPlayerHand().removeCard(handIndex);
+        Card card = player.getHand().removeCard(handIndex);
 
         if(isEnemy)
             board.placeEnemyCard(card, slot);

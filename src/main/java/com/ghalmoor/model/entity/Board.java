@@ -1,6 +1,7 @@
 package com.ghalmoor.model.entity;
 
 import java.lang.reflect.Array;
+import com.ghalmoor.model.game.Game;
 
 public class Board {
     private Card[] playerSlot = new Card[5];
@@ -35,28 +36,39 @@ public class Board {
     //COMBAT
 
     //combate provisório
-    public void resolveCombat()
+    public void resolveCombat(Game game)
     {
+        Player current = game.getCurrentPlayer();
+        boolean isPlayerTurn = (current == game.getPlayer1());
+
         for(int i = 0; i < 5; i++)
         {
-            Card playerCard = playerSlot[i];
-            Card enemyCard = enemySlot[i];
+            Card attacker;
+            Card defender;
 
-            if(playerCard != null)
+            if(isPlayerTurn)
             {
-                if(enemyCard != null)
+                attacker = playerSlot[i];
+                defender = enemySlot[i];
+            }
+            else
+            {
+                attacker = enemySlot[i];
+                defender = playerSlot[i];
+            }
+
+            if(attacker != null)
+            {
+                if(defender != null)
                 {
-                    enemyCard.takeDamage(playerCard.getAttack());
+                    defender.takeDamage(attacker.getAttack());
+
+                    //Remover depois
+                    System.out.println("\n" + attacker.getDefinition().getName() + " atacou " + defender.getDefinition().getName());
                 }
             }
 
-            if(enemyCard != null)
-            {
-                if(playerCard != null)
-                {
-                    playerCard.takeDamage(enemyCard.getAttack());
-                }
-            }
+            //Atacar o boss diretamente como no inscryption
         }
     }
 

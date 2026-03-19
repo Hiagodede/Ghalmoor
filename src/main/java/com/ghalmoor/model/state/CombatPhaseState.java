@@ -20,7 +20,7 @@ public class CombatPhaseState implements GameState{
     {
         System.out.println("\nAtacando...");
 
-        game.getBoard().resolveCombat();
+        game.getBoard().resolveCombat(game);
         game.getBoard().removeDeadCards();
     }
     @Override
