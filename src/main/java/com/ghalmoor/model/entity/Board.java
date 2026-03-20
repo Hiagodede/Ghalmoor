@@ -72,16 +72,16 @@ public class Board {
         }
     }
 
-    public void removeDeadCards()
+    public void removeDeadCards() //CORRIGIR
     {
         for(int i = 0; i < 5; i++)
         {
-            if(playerSlot[i] != null && playerSlot[i].isDead())
+            if(playerSlot[i] != null && playerSlot[i].isAlive())
             {
                 playerSlot[i] = null;
             }
 
-            if(enemySlot[i] != null && enemySlot[i].isDead())
+            if(enemySlot[i] != null && enemySlot[i].isAlive())
             {
                 enemySlot[i] = null;
             }

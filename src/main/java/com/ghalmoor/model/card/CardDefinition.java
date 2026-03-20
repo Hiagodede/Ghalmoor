@@ -1,24 +1,22 @@
 package com.ghalmoor.model.card;
 
 public class CardDefinition {
-    private String id;
     private String name;
     private final int baseAttack;
     private final int baseHealth;
-    private final int cost; // Custo de sanidade
+    private int sanityCost;
+    private CardType type;
 
-    public CardDefinition(String id ,String name, int attack, int health, int cost)
+
+    public CardDefinition(String name, int attack, int health, int sanityCost, CardType type)
     {
-        this.id = id;
         this.name = name;
         this.baseAttack = attack;
         this.baseHealth = health;
-        this.cost = cost;
+        this.sanityCost = sanityCost;
+        this.type = type;
     }
 
-    public String getId() {
-        return id;
-    }
     public String getName() {
         return name;
     }
@@ -28,8 +26,8 @@ public class CardDefinition {
     public int getHealth() {
         return baseHealth;
     }
-    public int getCost() {
-        return cost;
+    public int getSanityCost() {
+        return sanityCost;
     }
 
 }

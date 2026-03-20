@@ -1,31 +1,25 @@
 package com.ghalmoor.model.command;
 import com.ghalmoor.model.entity.*;
+import com.ghalmoor.model.game.Game;
 
 public class PlayCardCommand implements Command{
 
+    private Game game;
     private Player player;
-    private Board board;
     private int handIndex;
     private int slot;
-    private boolean isEnemy;
 
-    public PlayCardCommand(Player player, Board board, int handIndex,int slot, boolean isEnemy)
+    public PlayCardCommand(Player player, Board board, Game game, int handIndex, int slot)
     {
         this.player = player;
-        this.board = board;
+        this.game = game;
         this.handIndex = handIndex;
         this.slot = slot;
-        this.isEnemy = isEnemy;
     }
     @Override
     public void execute()
     {
-        Card card = player.getHand().removeCard(handIndex);
-
-        if(isEnemy)
-            board.placeEnemyCard(card, slot);
-        else
-            board.placeCard(card, slot);
+        game.playCard(player, handIndex, slot);
     }
 
 }

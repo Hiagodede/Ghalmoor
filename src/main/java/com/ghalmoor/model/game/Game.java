@@ -70,35 +70,9 @@ public class Game {
         currentState.drawCard(this);
     }
 
-    private void autoPlayerCard()
+    public void playCard(Player player, int handIndex, int slot)
     {
-        Player player = currentPlayer;
-
-        if(player.getHand().getCards().isEmpty())
-            return;
-
-
-        for(int i = 0; i < 5; i++)
-        {
-            if(board.getPlayerCard(i) == null && currentPlayer == player1)
-            {
-                Card card = player.getHand().removeCard(0);
-                board.placeCard(card, i);
-                System.out.println("\n Player colocou carta: " + card.getDefinition().getName() + " no slot: " + i);
-                return;
-            }
-            else
-            {
-                if(board.getEnemyCard(i) == null && currentPlayer == player2)
-                {
-                    Card card = player.getHand().removeCard(0);
-                    board.placeEnemyCard(card, i);
-                    System.out.println("\n Inimigo colocou carta: " + card.getDefinition().getName() + " no slot: " + i);
-                    return;
-                }
-
-            }
-        }
+        currentState.playCard( this ,player, handIndex, slot);
     }
 
     void attack()
@@ -116,7 +90,7 @@ public class Game {
 
         drawCard();
 
-        autoPlayerCard();
+        //playCard();
 
         nextPhase();
 

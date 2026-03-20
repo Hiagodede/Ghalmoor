@@ -32,11 +32,15 @@ public class Card {
 
     public void takeDamage(int damage)
     {
-        currentHealth -= damage;
+        this.currentHealth -= damage;
+
+        if(this.currentHealth < 0)
+            this.currentHealth = 0;
+
     }
 
-    public boolean isDead()
+    public boolean isAlive()
     {
-        return currentHealth <= 0;
+        return currentHealth > 0;
     }
 }
