@@ -7,7 +7,7 @@ import com.ghalmoor.model.game.Game;
 public interface GameState {
 
      void playCard(Game game, Player player, int handIndex, int slot);
-     void drawCard(Game game);
+     void drawCard(Game game, Player player);
      void attack(Game game);
      void endTurn(Game game);
 

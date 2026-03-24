@@ -12,7 +12,7 @@ public class CombatPhaseState implements GameState{
         System.out.println("\nNão é possível lançar cartas na fase de combate");
     }
     @Override
-    public void drawCard(Game game)
+    public void drawCard(Game game, Player player)
     {
         System.out.println("Não é possível retirar cartas do baralho durante a fase de luta");
     }
@@ -22,8 +22,7 @@ public class CombatPhaseState implements GameState{
     {
         System.out.println("\nAtacando...");
 
-        game.getBoard().resolveCombat(game);
-        game.getBoard().removeDeadCards();
+        game.resolveCombat();
     }
     @Override
     public void endTurn(Game game)

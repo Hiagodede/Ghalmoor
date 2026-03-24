@@ -13,10 +13,10 @@ public class TerminalGameTest {
         Deck deck1 = factory.inicialDeck();
         Deck deck2 = factory.enemyInicialDeck();
 
-        Player player1 = new Player(deck1);
-        Player enemy = new Player(deck2);
+        Player player1 = new Player("player 1" ,deck1);
+        Player enemy = new Player("player 2" ,deck2);
 
-        Board board = new Board();
+        Board board = new Board(player1, enemy);
 
         Game game = new Game(player1, enemy, board);
         game.startGame();

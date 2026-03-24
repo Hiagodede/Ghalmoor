@@ -5,59 +5,47 @@ import com.ghalmoor.model.entity.Player;
 import com.ghalmoor.model.state.BuyPhaseState;
 import com.ghalmoor.model.state.GameState;
 import com.ghalmoor.model.entity.Card;
+import com.ghalmoor.model.state.PlanningPhase;
 
 public class Game {
     private Player player1;
     private Player player2;
-    private Board board;
-    private Player currentPlayer;
 
+    private Board board;
+
+    private Player currentPlayer;
     private GameState currentState;
 
-
-    public Game(Player player1, Player player2, Board board)
+    //
+    //CONSTRUTOR
+    //
+    public Game(Player player1, Player player2)
     {
         this.player1 = player1;
         this.player2 = player2;
-        this.board = board;
+        board = new Board(player1, player2);
 
         this.currentState = new BuyPhaseState();
 
         this.currentPlayer = player1;
+
+        this.currentState = new PlanningPhase();
     }
 
-    public void setState(GameState state) {
-        this.currentState = state;
-    }
-
-    //getter
+    //
+    //GETTERS
+    //
     public GameState getState()
     {
         return currentState;
     }
-
-    public void startGame()
-    {
-        for(int i = 0; i < 3; i++)
-        {
-            player1.drawCard();
-            player2.drawCard();
-        }
-    }
-
-    public void endTurn()
-    {
-        currentPlayer = (currentPlayer == player1)? player2 : player1;
-    }
-
     public Player getCurrentPlayer()
     {
         return currentPlayer;
     }
-
-    public Player getPlayer1()
+    public Player getOpponent(Player player)
     {
-        return player1;
+        return player == player1? player2 : player1;
     }
 
     public Board getBoard()
@@ -65,9 +53,24 @@ public class Game {
         return board;
     }
 
-    public void drawCard()
+    //
+    //CONTROLADOR DE ESTADOS
+    //
+    public void setState(GameState state) {
+        this.currentState = state;
+    }
+
+    //
+    //AÇÕES DELAGADAS AO STATE
+    //
+    public void endTurn()
     {
-        currentState.drawCard(this);
+        currentPlayer = (currentPlayer == player1)? player2 : player1;
+    }
+
+    public void drawCard(Player player)
+    {
+        currentState.drawCard(this, player);
     }
 
     public void playCard(Player player, int handIndex, int slot)
@@ -79,24 +82,28 @@ public class Game {
     {
         currentState.attack(this);
     }
-    void nextPhase()
+
+    //FLUXO DE TURNO
+
+    public void nextPlayer()
     {
-        currentState.endTurn(this);
+        currentPlayer = (currentPlayer == player1)? player2: player1;
     }
 
-    public void playTurn()
+    public void startTurn()
     {
-        System.out.println(currentPlayer == player1? "TURNO DO PLAYER" : "TURNO DO INIMIGO");
-
-        drawCard();
-
-        //playCard();
-
-        nextPhase();
-
-        attack();
-
-        nextPhase();
+        System.out.println("\n Turno de: " + currentPlayer.);
     }
+
+    public void resolveCombat()
+    {
+        Player opponent = getOpponent(currentPlayer);
+
+        board.resolveCombat(currentPlayer, opponent);
+
+        //checkGameOver();
+    }
+
+
 
 }

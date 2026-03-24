@@ -12,9 +12,9 @@ public class BuyPhaseState implements GameState{
         System.out.println("\n Compre uma carta antes de jogar");
     }
     @Override
-    public void drawCard(Game game)
+    public void drawCard(Game game, Player player)
     {
-        game.getCurrentPlayer().drawCard();
+        player.drawCard();
     }
     @Override
     public void attack(Game game)

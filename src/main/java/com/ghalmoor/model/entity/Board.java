@@ -1,90 +1,98 @@
 package com.ghalmoor.model.entity;
 
 import java.lang.reflect.Array;
+import java.util.Map;
+import java.util.HashMap;
 import com.ghalmoor.model.game.Game;
 
 public class Board {
-    private Card[] playerSlot = new Card[5];
-    private Card[] enemySlot = new Card[5];
+    private static final int MAX_SLOTS = 5;
 
-    public void placeCard(Card card, int position)
+    private Map<Player, Card[]> slots;
+
+    //
+    // CONSTRUTOR
+    //
+    public Board(Player player1, Player player2)
     {
-        if(playerSlot[position] != null)
-            throw new IllegalStateException("Slot ocupado");
-
-        playerSlot[position] = card;
+        slots = new HashMap<>();
+        slots.put(player1, new Card[MAX_SLOTS]);
+        slots.put(player2, new Card[MAX_SLOTS]);
     }
 
-    public void placeEnemyCard(Card card, int position)
+    //
+    // VALIDAÇÃO
+    //
+    public boolean isValidSlot(int slot)
     {
-        if(enemySlot[position] != null)
-            throw new IllegalStateException("Slot ocupado");
-
-        enemySlot[position] = card;
+        return slot >= 0 && slot <= MAX_SLOTS;
     }
 
-    public Card getPlayerCard(int position)
-    {
-        return playerSlot[position];
+    public boolean isSlotAvailable(Player player, int slot) {
+        if (!isValidSlot(slot))
+            return false;
+        Card[] playerSlots = slots.get(player);
+        return playerSlots != null && playerSlots[slot] != null;
     }
 
-    public Card getEnemyCard(int position)
+    //
+    // AÇÕES
+    //
+    public boolean placeCard(Player player ,Card card, int slot)
     {
-        return enemySlot[position];
+        if(!isSlotAvailable(player, slot))
+            return false;
+        slots.get(player)[slot] = card;
+        return true;
     }
 
+    public Card getCard(Player player,int slot)
+    {
+        if(!isValidSlot(slot))
+            return null;
+        return slots.get(player)[slot];
+    }
+
+    //
     //COMBAT
+    //
 
-    //combate provisório
-    public void resolveCombat(Game game)
+    public void resolveCombat(Player attacker, Player defender)
     {
-        Player current = game.getCurrentPlayer();
-        boolean isPlayerTurn = (current == game.getPlayer1());
+        Card[] attackerSlots = slots.get(attacker);
+        Card[] defenderSlots = slots.get(defender);
 
-        for(int i = 0; i < 5; i++)
+        for(int i = 0; i < MAX_SLOTS; i++)
         {
-            Card attacker;
-            Card defender;
+            Card atk = attackerSlots[i];
+            Card def = defenderSlots[i];
 
-            if(isPlayerTurn)
+            if(atk == null)
+                continue;
+
+            if(def != null)
             {
-                attacker = playerSlot[i];
-                defender = enemySlot[i];
+                def.takeDamage(atk.getAttack());
             }
             else
             {
-                attacker = enemySlot[i];
-                defender = playerSlot[i];
+                defender.takeDame(atk.getAttack());
             }
-
-            if(attacker != null)
-            {
-                if(defender != null)
-                {
-                    defender.takeDamage(attacker.getAttack());
-
-                    //Remover depois
-                    System.out.println("\n" + attacker.getDefinition().getName() + " atacou " + defender.getDefinition().getName());
-                }
-            }
-
-            //Atacar o boss diretamente como no inscryption
         }
+        removeDeadCards(attacker);
+        removeDeadCards(defender);
     }
 
-    public void removeDeadCards() //CORRIGIR
+    public void removeDeadCards(Player player) //CORRIGIR
     {
-        for(int i = 0; i < 5; i++)
+        Card[] playerSlots = slots.get(player);
+        for(int i = 0; i < MAX_SLOTS; i++)
         {
-            if(playerSlot[i] != null && playerSlot[i].isAlive())
+            if(playerSlots[i] != null && !playerSlots[i].isAlive())
             {
-                playerSlot[i] = null;
-            }
-
-            if(enemySlot[i] != null && enemySlot[i].isAlive())
-            {
-                enemySlot[i] = null;
+                playerSlots[i] = null;
             }
         }
     }
+
 }

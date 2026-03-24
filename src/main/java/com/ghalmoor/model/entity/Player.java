@@ -10,8 +10,9 @@ public class Player {
     private int health;
     private int sanity;
     private int maxSanity;
+    private String name;
 
-    public Player(Deck deck) {
+    public Player(String name,Deck deck) {
         this.deck = deck;
         this.playerHand = new Hand();
         health = gameConfig.PLAYER_INITIAL_HEALTH;
@@ -60,6 +61,11 @@ public class Player {
     public boolean isAlive()
     {
         return this.health > 0;
+    }
+
+    public boolean isEnemy(Player player)
+    {
+
     }
 
 }
