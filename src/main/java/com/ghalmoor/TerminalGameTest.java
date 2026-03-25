@@ -13,17 +13,17 @@ public class TerminalGameTest {
         Deck deck1 = factory.inicialDeck();
         Deck deck2 = factory.enemyInicialDeck();
 
+
         Player player1 = new Player("player 1" ,deck1);
-        Player enemy = new Player("player 2" ,deck2);
+        Player player2 = new Player("player 2" ,deck2);
 
-        Board board = new Board(player1, enemy);
-
-        Game game = new Game(player1, enemy, board);
-        game.startGame();
+//        Board board = new Board(player1, player2);
+//
+//        Game game = new Game(player1, player2);
+//        game.startTurn();
 
         for(int i = 0; i < 5; i++)
         {
-            game.playTurn();
         }
 
 //        System.out.println("\nCartas do Jogador: tam: " + player1.getHand().getSize());

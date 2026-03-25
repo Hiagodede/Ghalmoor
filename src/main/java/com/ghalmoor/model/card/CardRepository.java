@@ -45,7 +45,7 @@ public class CardRepository {
         cards.put(CardId.DOG, new CardDefinition("Cachorro", 2, 3, 0, CardType.NORMAL));
     }
 
-    public CardDefinition getCard(String id)
+    public CardDefinition getCard(CardId id)
     {
         return cards.get(id);
     }

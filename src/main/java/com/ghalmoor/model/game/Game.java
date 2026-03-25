@@ -65,7 +65,7 @@ public class Game {
     //
     public void endTurn()
     {
-        currentPlayer = (currentPlayer == player1)? player2 : player1;
+        currentState.endTurn(this);
     }
 
     public void drawCard(Player player)
@@ -92,7 +92,11 @@ public class Game {
 
     public void startTurn()
     {
-        System.out.println("\n Turno de: " + currentPlayer.);
+        System.out.println("\n Turno de: " + currentPlayer.getName());
+
+        currentPlayer.drawCard();
+
+        setState(new PlanningPhase());
     }
 
     public void resolveCombat()
@@ -101,9 +105,15 @@ public class Game {
 
         board.resolveCombat(currentPlayer, opponent);
 
-        //checkGameOver();
+        checkGameOver();
     }
 
-
+    public void checkGameOver()
+    {
+        if(!player1.isAlive())
+            System.out.println("\nInimigo venceu!");
+        else if(!player2.isAlive())
+            System.out.println("\nJogador venceu!");
+    }
 
 }

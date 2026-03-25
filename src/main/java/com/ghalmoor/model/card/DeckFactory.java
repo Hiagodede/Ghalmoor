@@ -16,12 +16,12 @@ public class DeckFactory {
     public Deck inicialDeck() {
         Deck deck = new Deck();
 
-        deck.addCard(repository.getCard("deer"));
-        deck.addCard(repository.getCard("bird"));
-        deck.addCard(repository.getCard("fox"));
-        deck.addCard(repository.getCard("shark"));
-        deck.addCard(repository.getCard("horse"));
-        deck.addCard(repository.getCard("frog"));
+        deck.addCard(repository.getCard(CardId.DEER));
+        deck.addCard(repository.getCard(CardId.BIRD));
+        deck.addCard(repository.getCard(CardId.FOX));
+        deck.addCard(repository.getCard(CardId.SHARK));
+        deck.addCard(repository.getCard(CardId.HORSE));
+        deck.addCard(repository.getCard(CardId.FROG));
 
         deck.shuffle();
 
@@ -30,9 +30,9 @@ public class DeckFactory {
     public Deck enemyInicialDeck() {
         Deck deck = new Deck();
 
-        deck.addCard(repository.getCard("bosta"));
-        deck.addCard(repository.getCard("raposaSangrenta"));
-        deck.addCard(repository.getCard("hocusPocus"));
+        deck.addCard(repository.getCard(CardId.BOSTA));
+        deck.addCard(repository.getCard(CardId.RAPOSA_SANGRENTA));
+        deck.addCard(repository.getCard(CardId.HOCUS_POCUS));
 
         deck.shuffle();
 

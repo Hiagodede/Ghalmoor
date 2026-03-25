@@ -28,7 +28,7 @@ public class CombatPhaseState implements GameState{
     public void endTurn(Game game)
     {
         System.out.println("\nTurno encerrado");
-        game.endTurn();
+        game.nextPlayer();
         game.setState(new BuyPhaseState());
     }
 }

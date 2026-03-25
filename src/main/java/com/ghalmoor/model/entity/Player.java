@@ -14,6 +14,7 @@ public class Player {
 
     public Player(String name,Deck deck) {
         this.deck = deck;
+        this.name = name;
         this.playerHand = new Hand();
         health = gameConfig.PLAYER_INITIAL_HEALTH;
         sanity = gameConfig.PLAYER_INITIAL_SANITY;
@@ -34,6 +35,11 @@ public class Player {
 
     public Hand getHand() {
         return playerHand;
+    }
+
+    public String getName()
+    {
+        return name;
     }
 
     public void takeDame(int damage)
@@ -63,9 +69,5 @@ public class Player {
         return this.health > 0;
     }
 
-    public boolean isEnemy(Player player)
-    {
-
-    }
 
 }

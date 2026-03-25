@@ -17,7 +17,7 @@ public class AttackCommand implements Command{
     {
         defender.takeDamage(attacker.getAttack());
 
-        if(defender.isDead())
+        if(!defender.isAlive())
             System.out.println("\n Carta " + defender.getDefinition().getName() + "morreu");
     }
 }
