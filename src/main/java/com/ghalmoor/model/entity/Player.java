@@ -4,7 +4,7 @@ import com.ghalmoor.model.card.CardDefinition;
 import com.ghalmoor.util.GameConfig;
 
 public class Player {
-    private GameConfig gameConfig;
+    private GameConfig gameConfig = new GameConfig();
     private Hand playerHand;
     private Deck deck;
     private int health;
@@ -42,7 +42,12 @@ public class Player {
         return name;
     }
 
-    public void takeDame(int damage)
+    public int getHealth()
+    {
+        return health;
+    }
+
+    public void takeDamege(int damage)
     {
         this.health -= damage;
 

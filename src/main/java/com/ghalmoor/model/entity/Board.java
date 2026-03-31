@@ -25,14 +25,14 @@ public class Board {
     //
     public boolean isValidSlot(int slot)
     {
-        return slot >= 0 && slot <= MAX_SLOTS;
+        return slot >= 0 && slot < MAX_SLOTS;
     }
 
     public boolean isSlotAvailable(Player player, int slot) {
         if (!isValidSlot(slot))
             return false;
         Card[] playerSlots = slots.get(player);
-        return playerSlots != null && playerSlots[slot] != null;
+        return playerSlots != null && playerSlots[slot] == null;
     }
 
     //
@@ -76,7 +76,7 @@ public class Board {
             }
             else
             {
-                defender.takeDame(atk.getAttack());
+                defender.takeDamege(atk.getAttack());
             }
         }
         removeDeadCards(attacker);
@@ -93,6 +93,11 @@ public class Board {
                 playerSlots[i] = null;
             }
         }
+    }
+
+    public Card[] getSlots(Player player)
+    {
+        return slots.get(player);
     }
 
 }

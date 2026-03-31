@@ -28,6 +28,11 @@ public class Hand {
         return cards;
     }
 
+    public Card getCard(int index)
+    {
+        return cards.get(index);
+    }
+
     public int getSize()
     {
         return cards.size();

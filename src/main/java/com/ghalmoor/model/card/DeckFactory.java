@@ -33,6 +33,9 @@ public class DeckFactory {
         deck.addCard(repository.getCard(CardId.BOSTA));
         deck.addCard(repository.getCard(CardId.RAPOSA_SANGRENTA));
         deck.addCard(repository.getCard(CardId.HOCUS_POCUS));
+        deck.addCard(repository.getCard(CardId.BUFFALO));
+        deck.addCard(repository.getCard(CardId.FALCON));
+        deck.addCard(repository.getCard(CardId.TIGER));
 
         deck.shuffle();
 
